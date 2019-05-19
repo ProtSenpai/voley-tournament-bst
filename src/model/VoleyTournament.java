@@ -110,4 +110,44 @@ public class VoleyTournament {
 		}
 	}
 	
+	 public void convertToList(Participant root){
+		 
+		 int total = counting(root)/2;
+		 int times = 0;
+		 
+		 while(times<total) {
+	     if(root == null) {
+	         return;
+	     }
+	   
+	     convertToList(root.getLeft());
+	     if(first == null) {
+	         first = root;
+	     }
+	     Participant prev = root.getPrev();
+	     if(first.getPrev() == null) {
+	    	 first.setPrev(root);
+	     } else {
+	         root.setLeft(first.getPrev());
+	         prev = root.getPrev();
+	         prev.setRigth(root);
+	     }
+	     prev = root;
+	     convertToList(root.getRigth());
+	     if(root.getRigth() == null) {
+	         first = root;
+	     }
+	     times++;
+		 }
+	 }
+	 
+	 public int counting(Participant current) {    
+		  if (current == null) {
+			  return 0;
+		  } else {
+			  return 1 + counting(current.getLeft()) + counting(current.getRigth());
+		  }
+
+	}
+	
 }
