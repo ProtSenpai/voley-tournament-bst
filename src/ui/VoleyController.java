@@ -1,10 +1,16 @@
 package ui;
 
+
+import java.io.File;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import model.VoleyTournament;
 
 public class VoleyController {
 
@@ -40,9 +46,22 @@ public class VoleyController {
 
     @FXML
     private Label loadDataLabel1;
+    
+    //Relation
+    
+    VoleyTournament tournament= new VoleyTournament();
 
     @FXML
     public void exploreDataButton(ActionEvent event) {
+    	
+    	 FileChooser chooser = new FileChooser();
+         FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("select your media(*.mp4)", "*.mp4");
+         chooser.getExtensionFilters().add(filter);
+         File file = chooser.showOpenDialog(new Stage());
+         if ( file !=null){
+        	 
+        	 
+         }
 
     }
 
