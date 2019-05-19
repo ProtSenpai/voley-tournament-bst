@@ -151,23 +151,23 @@ public class VoleyTournament {
 	}
 	 
 	 public Participant searchSpectador(int id) {
-			Participant s= new Participant(id,"","","","","");
-			return searchSpectador(root,s);
+			Participant searching= new Participant(id,"","","","","");
+			return searchSpectador(root,searching);
 		}
 		
-		private Participant searchSpectador(Participant current, Participant s) {
+		private Participant searchSpectador(Participant current, Participant searching) {
 			if(current!=null) {
-				if(s.compareTo(current)<0) {
+				if(searching.compareTo(current)<0) {
 					if(current.getLeft()!=null){
-						return searchSpectador(current.getLeft(),s);
+						return searchSpectador(current.getLeft(),searching);
 					}else {
-						return searchSpectador(current.getRigth(), s);
+						return searchSpectador(current.getRigth(), searching);
 					}
-				}else if(s.compareTo(current)>0){
+				}else if(searching.compareTo(current)>0){
 					if(current.getRigth()!=null) {
-						return searchSpectador(current.getRigth(), s);
+						return searchSpectador(current.getRigth(), searching);
 					}else {
-						return searchSpectador(current.getLeft(), s);
+						return searchSpectador(current.getLeft(), searching);
 					}
 				}else {
 					return current;
