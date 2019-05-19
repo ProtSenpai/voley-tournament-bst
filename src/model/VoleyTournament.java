@@ -11,7 +11,7 @@ public class VoleyTournament {
 	
 	//URL path
 	
-	public static final String PATH = "data/data.csv";
+	public static final String PATH = "data/information.csv";
 
 	//Constructor
 	public VoleyTournament() {
