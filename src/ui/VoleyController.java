@@ -2,6 +2,7 @@ package ui;
 
 
 import java.io.File;
+import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -55,18 +56,26 @@ public class VoleyController {
     public void exploreDataButton(ActionEvent event) {
     	
     	 FileChooser chooser = new FileChooser();
-         FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("select your media(*.mp4)", "*.mp4");
+         FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("", "*.csv");
          chooser.getExtensionFilters().add(filter);
          File file = chooser.showOpenDialog(new Stage());
          if ( file !=null){
         	 
-        	 
+        	 directoryDataField.setText(file.getPath().toString());
          }
 
     }
 
     @FXML
     public void loadDataButton(ActionEvent event) {
+    	
+    	try {
+			tournament.LoadFileAndAddToTree(directoryDataField.getText());
+			loadDataLabel.setText("Potential spectators have been successfully loaded");
+		} catch (IOException e) {
+			e.printStackTrace();
+			loadDataLabel.setText("An error has occurred loading the file ");
+		}
 
     }
 

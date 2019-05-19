@@ -4,8 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
-import java.net.URLConnection;
+
 
 public class VoleyTournament {
 
@@ -17,6 +16,9 @@ public class VoleyTournament {
 	private Participant showRoot;
 	
 	
+
+	public static final String PATH = "data/information.csv";
+
 
 	//Constructor
 	public VoleyTournament() {
