@@ -115,7 +115,7 @@ public class VoleyTournament {
 		 int total = counting(root)/2;
 		 int times = 0;
 		 
-		 while(times<total) {
+		 while(times<=total) {
 	     if(root == null) {
 	         return;
 	     }
