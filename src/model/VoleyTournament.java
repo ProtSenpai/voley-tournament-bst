@@ -73,7 +73,7 @@ public class VoleyTournament {
 			String[] parts = line.split(",");
 			/*URL url = new URL(parts[6]);
 			URLConnection conn = url.openConnection();*/
-			Participant nParticipant = new Participant(Integer.parseInt(parts[0]),parts[1],parts[2],parts[3],parts[4],parts[5],null,parts[7]);
+			Participant nParticipant = new Participant(Integer.parseInt(parts[0]),parts[1],parts[2],parts[3],parts[4],parts[5]);
 			addSpectatorIntoTree(nParticipant);
 			line = br.readLine();
 		}

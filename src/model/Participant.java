@@ -1,6 +1,5 @@
 package model;
 
-import javafx.scene.image.Image;
 
 public class Participant implements Comparable<Participant> {
 
@@ -12,8 +11,7 @@ public class Participant implements Comparable<Participant> {
 	private String email;
 	private String gender;
 	private String country;
-	private Image photo; 
-	private String birthday;
+	
 	
 	//Relations bst
 	private Participant left;
@@ -26,8 +24,7 @@ public class Participant implements Comparable<Participant> {
 	
 	//Constructor
 	
-	public Participant(int id, String firstName, String lastName, String email, String gender, String country,
-			Image photo, String birthday) {
+	public Participant(int id, String firstName, String lastName, String email, String gender, String country) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -35,8 +32,7 @@ public class Participant implements Comparable<Participant> {
 		this.email = email;
 		this.gender = gender;
 		this.country = country;
-		this.photo = photo;
-		this.birthday = birthday;
+	
 	}
 
 	// Getters and setters
@@ -88,23 +84,7 @@ public class Participant implements Comparable<Participant> {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-
-	public Image getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(Image photo) {
-		this.photo = photo;
-	}
-
-	public String getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
-	}
-
+	
 	public Participant getLeft() {
 		return left;
 	}

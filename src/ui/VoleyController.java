@@ -56,7 +56,7 @@ public class VoleyController {
     public void exploreDataButton(ActionEvent event) {
     	
     	 FileChooser chooser = new FileChooser();
-         FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("", "*.csv");
+         FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Select a file (.csv)", "*.csv");
          chooser.getExtensionFilters().add(filter);
          File file = chooser.showOpenDialog(new Stage());
          if ( file !=null){
@@ -71,7 +71,7 @@ public class VoleyController {
     	
     	try {
 			tournament.LoadFileAndAddToTree(directoryDataField.getText());
-			loadDataLabel.setText("Potential spectators have been successfully loaded");
+			loadDataLabel.setText("Potential spectators have been successfully" + "\n" + "loaded");
 		} catch (IOException e) {
 			e.printStackTrace();
 			loadDataLabel.setText("An error has occurred loading the file ");
