@@ -9,20 +9,19 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-	public static void main(String[] args) {
+		public void start(Stage stage) throws Exception {
+			
+			Parent root = FXMLLoader.load(getClass().getResource("voley.fxml"));
+			
+			Scene scene = new Scene(root);
+			stage.setTitle("IV Panamerican Male Volleyball Cup U-21");
+			stage.setScene(scene);
+			stage.show();
+			
+		}
 		
-		launch(args);
-	}
-
-	@Override
-	public void start(Stage stage) throws Exception {
+		public static void main(String [] args) {
+			launch(args);
+		}
 		
-		Parent root = FXMLLoader.load(getClass().getResource(""));
-		Scene scene= new Scene(root);
-		stage.setScene(scene);
-		stage.setTitle("Volley Tournament Sub-21");
-		stage.show();
-		
-	}
-
 }
