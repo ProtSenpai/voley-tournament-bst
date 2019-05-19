@@ -8,9 +8,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.Participant;
 import model.VoleyTournament;
 
 public class VoleyController {
@@ -86,7 +88,29 @@ public class VoleyController {
 
     @FXML
     public void searchSpectatorButton(ActionEvent event) {
-
+    	try {
+    	Participant found;
+    	Image image;
+    	
+    	found = tournament.searchSpectador(Integer.parseInt(idSearchField.getText()));
+    	
+    	if(found.getGender().equals("Male")) {
+    		image=new Image(new File("images/avatar-man.png").toURI().toString());
+    		imageView.setImage(image);
+    	} else {
+    		image=new Image(new File("images/avatar-woman.png").toURI().toString());
+    		imageView.setImage(image);
+    	}
+    	
+    	informationFoundLabel.setText("The name is: " + found.getFirstName() + found.getLastName() + "\n" + "The email is: "
+    	+ found.getEmail() + "\n" + "The gender is: " + found.getGender() + "\n" + "The Country is: " + found.getCountry());
+    	
+    	foundSpectatorLabel.setText("The spectator was found");
+    	} catch (NullPointerException e) {
+    		
+    		foundSpectatorLabel.setText("not know found the spectator with the id " + idSearchField.getText());
+		}
+    	
     }
 
     @FXML

@@ -149,5 +149,31 @@ public class VoleyTournament {
 		  }
 
 	}
+	 
+	 public Participant searchSpectador(int id) {
+			Participant s= new Participant(id,"","","","","");
+			return searchSpectador(root,s);
+		}
+		
+		private Participant searchSpectador(Participant current, Participant s) {
+			if(current!=null) {
+				if(s.compareTo(current)<0) {
+					if(current.getLeft()!=null){
+						return searchSpectador(current.getLeft(),s);
+					}else {
+						return searchSpectador(current.getRigth(), s);
+					}
+				}else if(s.compareTo(current)>0){
+					if(current.getRigth()!=null) {
+						return searchSpectador(current.getRigth(), s);
+					}else {
+						return searchSpectador(current.getLeft(), s);
+					}
+				}else {
+					return current;
+				}
+			}
+			return current;
+		}
 	
 }

@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.VoleyController">
    <children>
       <TabPane layoutX="-5.0" layoutY="-1.0" prefHeight="533.0" prefWidth="749.0" tabClosingPolicy="UNAVAILABLE">
@@ -141,8 +140,8 @@
                         </Pane>
                         <Pane layoutX="382.0" layoutY="80.0" prefHeight="409.0" prefWidth="348.0" style="-fx-border-color: BLACK; -fx-border-width: 2; -fx-border-radius: 10;">
                            <children>
-                              <ImageView fx:id="imageView" fitHeight="128.0" fitWidth="135.0" layoutX="90.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label fx:id="informationFoundLabel" layoutX="38.0" layoutY="159.0" prefHeight="161.0" prefWidth="252.0">
+                              <ImageView fx:id="imageView" fitHeight="128.0" fitWidth="135.0" layoutX="96.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label fx:id="informationFoundLabel" layoutX="14.0" layoutY="137.0" prefHeight="249.0" prefWidth="324.0">
                                  <font>
                                     <Font name="Consolas Bold" size="13.0" />
                                  </font>
