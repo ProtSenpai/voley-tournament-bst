@@ -195,6 +195,7 @@
                               </Button>
                            </children>
                         </Pane>
+                        <Pane fx:id="paneShow" prefHeight="403.0" prefWidth="755.0" />
                      </children>
                   </AnchorPane>
             </content>

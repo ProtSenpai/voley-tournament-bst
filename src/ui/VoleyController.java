@@ -5,13 +5,23 @@ import java.io.File;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.Participant;
 import model.VoleyTournament;
 
@@ -50,9 +60,18 @@ public class VoleyController {
     @FXML
     private Label loadDataLabel1;
     
+    @FXML
+    private Pane paneShow;
+    
     //Relation
     
     VoleyTournament tournament= new VoleyTournament();
+
+	
+    
+    public static final int DIAMETRO = 10;
+    public static final int RADIO = DIAMETRO / 2;
+    public static final int ANCHO = 30;
 
     @FXML
     public void exploreDataButton(ActionEvent event) {
@@ -83,6 +102,7 @@ public class VoleyController {
 
     @FXML
     public void searchParticipantButton(ActionEvent event) {
+    	
 
     }
 
@@ -115,13 +135,94 @@ public class VoleyController {
 
     @FXML
     public void showParticipants(ActionEvent event) {
+    	
+    	paneShow.getChildren().clear();
 
     }
 
     @FXML
     public void showSpectators(ActionEvent event) {
+    	
+		try {
+			paneShow.getChildren().clear();
+			 Alert info = new Alert(AlertType.INFORMATION);
+            	info.setTitle("Spectator Infotmation");
+            	info.setHeaderText(null);
+            	info.initStyle(StageStyle.UTILITY);
+            	info.setContentText("Click on the circles to show the information ");
+            	info.show();
+			tournament.LoadFileAndAddToTree(directoryDataField.getText());
+			
+			pintar((int)paneShow.getWidth()/2, 20, tournament.getRoot());
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+
+    	
 
     }
 
+	
+	private void pintar(int x, int y, Participant n) {
+	
+		
+        if (n == null){
+        	
+        }
+        else {
+        	
+    
+        	
+            int EXTRA = 1 * (ANCHO / 2);
+            Circle c= new Circle(x, y, RADIO);
+            c.setOnMouseClicked(new EventHandler<MouseEvent>() {
+               @Override
+               public void handle(MouseEvent clicked) {
+                   if(clicked.getClickCount() == 1) {
+                	   Alert info = new Alert(AlertType.INFORMATION);
+                   	info.setTitle("Spectator Infotmation");
+                   	info.setHeaderText(null);
+                   	info.initStyle(StageStyle.UTILITY);
+                   	info.setContentText("The country of this spectator is " + n.getCountry());
+                   	info.show();
+                       
+                   }
+               }
+           });
+            paneShow.getChildren().add(c);
+            
+            
+            
+			if (n.getLeft() != null) {
+              Line line = new Line(x, y, x - ANCHO - EXTRA  ,y + ANCHO);
+              if(x==paneShow.getLayoutX()) {
+            	  
+              }else {
+              line.setFill(Color.RED);
+			paneShow.getChildren().add(line);
+              }
+			}
+			
+			if (n.getRigth() != null) {
+	              Line line = new Line(x, y , x + ANCHO + EXTRA  ,y + ANCHO);
+	              
+				paneShow.getChildren().add(line);
+				
+			}
+			
+			pintar(x-ANCHO-EXTRA, y+ANCHO, n.getLeft());
+			pintar(x+ANCHO+EXTRA, y+ANCHO, n.getRigth());
+			
+        	
+        
+        }
+    }
+        
+    
+
+	
+
 
 }
+
