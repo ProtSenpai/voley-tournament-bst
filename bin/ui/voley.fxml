@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.VoleyController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="537.0" prefWidth="761.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.VoleyController">
    <children>
-      <TabPane layoutX="-5.0" layoutY="-1.0" prefHeight="533.0" prefWidth="749.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="-5.0" layoutY="-5.0" prefHeight="549.0" prefWidth="770.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Registry">
             <content>
@@ -27,9 +27,6 @@
                                  <font>
                                     <Font name="Consolas Bold Italic" size="18.0" />
                                  </font>
-                                 <effect>
-                                    <DropShadow color="#3749a4" height="15.07" radius="7.775" width="18.03" />
-                                 </effect>
                               </Label>
                               <TextField fx:id="directoryDataField" layoutX="14.0" layoutY="23.0" prefHeight="29.0" prefWidth="154.0" />
                               <Button layoutX="186.0" layoutY="24.0" mnemonicParsing="false" onAction="#exploreDataButton" style="-fx-background-color: #5190d3;" text="Explore" textFill="WHITE">
@@ -90,13 +87,10 @@
                                  <font>
                                     <Font name="Consolas Bold Italic" size="18.0" />
                                  </font>
-                                 <effect>
-                                    <DropShadow color="#3749a4" height="15.07" radius="7.775" width="18.03" />
-                                 </effect>
                               </Label>
                            </children>
                         </Pane>
-                        <Pane layoutX="27.0" layoutY="375.0" prefHeight="114.0" prefWidth="342.0" style="-fx-border-width: 2; -fx-border-color: BLACK; -fx-border-radius: 10;">
+                        <Pane layoutX="27.0" layoutY="363.0" prefHeight="126.0" prefWidth="344.0" style="-fx-border-width: 2; -fx-border-color: BLACK; -fx-border-radius: 10;">
                            <children>
                               <TextField fx:id="idParticipantField" layoutX="47.0" layoutY="29.0" prefHeight="29.0" prefWidth="123.0">
                                  <font>
@@ -132,23 +126,20 @@
                                  <font>
                                     <Font name="Consolas Bold Italic" size="18.0" />
                                  </font>
-                                 <effect>
-                                    <DropShadow color="#3749a4" height="15.07" radius="7.775" width="18.03" />
-                                 </effect>
                               </Label>
                            </children>
                         </Pane>
-                        <Pane layoutX="382.0" layoutY="80.0" prefHeight="409.0" prefWidth="348.0" style="-fx-border-color: BLACK; -fx-border-width: 2; -fx-border-radius: 10;">
+                        <Pane layoutX="396.0" layoutY="81.0" prefHeight="409.0" prefWidth="348.0" style="-fx-border-color: BLACK; -fx-border-width: 2; -fx-border-radius: 10;">
                            <children>
                               <ImageView fx:id="imageView" fitHeight="128.0" fitWidth="135.0" layoutX="96.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label fx:id="informationFoundLabel" layoutX="14.0" layoutY="137.0" prefHeight="249.0" prefWidth="324.0">
+                              <Label fx:id="informationFoundLabel" layoutX="58.0" layoutY="157.0" prefHeight="229.0" prefWidth="238.0">
                                  <font>
                                     <Font name="Consolas Bold" size="13.0" />
                                  </font>
                               </Label>
                            </children>
                         </Pane>
-                        <Label layoutX="487.0" layoutY="80.0" text="Show data">
+                        <Label layoutX="510.0" layoutY="80.0" text="Show data">
                            <font>
                               <Font name="Consolas Bold Italic" size="24.0" />
                            </font>
@@ -160,6 +151,7 @@
                               </Lighting>
                            </effect>
                         </Label>
+                        <Button layoutX="577.0" layoutY="28.0" mnemonicParsing="false" onAction="#addParticipants" text="Participants" />
                      </children>
                   </AnchorPane>
             </content>

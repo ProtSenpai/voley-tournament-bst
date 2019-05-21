@@ -69,6 +69,7 @@ public class VoleyTournament {
 		BufferedReader br = new BufferedReader(fileReader);
 		String line = br.readLine();
 		line = br.readLine();
+		int times = 0;
 		while(line != null){
 			String[] parts = line.split(",");
 			/*URL url = new URL(parts[6]);
@@ -79,6 +80,8 @@ public class VoleyTournament {
 		}
 		fileReader.close();
 		br.close();
+	//	int size = counting(root);
+    	choiceAleatoryParticipants(times);
 		
 	}
 
@@ -110,64 +113,25 @@ public class VoleyTournament {
 		}
 	}
 	
-	 public void convertToList(Participant root){
-		 
-		 int total = counting(root)/2;
-		 int times = 0;
-		 
-		 while(times<=total) {
-	     if(root == null) {
-	         return;
-	     }
-	   
-	     convertToList(root.getLeft());
-	     if(first == null) {
-	         first = root;
-	     }
-	     Participant prev = root.getPrev();
-	     if(first.getPrev() == null) {
-	    	 first.setPrev(root);
-	     } else {
-	         root.setLeft(first.getPrev());
-	         prev = root.getPrev();
-	         prev.setRigth(root);
-	     }
-	     prev = root;
-	     convertToList(root.getRigth());
-	     if(root.getRigth() == null) {
-	         first = root;
-	     }
-	     times++;
-		 }
-	 }
-	 
-	 public int counting(Participant current) {    
-		  if (current == null) {
-			  return 0;
-		  } else {
-			  return 1 + counting(current.getLeft()) + counting(current.getRigth());
-		  }
-
-	}
 	 
 	 public Participant searchSpectador(int id) {
-			Participant searching= new Participant(id,"","","","","");
-			return searchSpectador(root,searching);
+			Participant s= new Participant(id,"","","","","");
+			return searchSpectador(root,s);
 		}
 		
-		private Participant searchSpectador(Participant current, Participant searching) {
+		private Participant searchSpectador(Participant current, Participant s) {
 			if(current!=null) {
-				if(searching.compareTo(current)<0) {
+				if(s.compareTo(current)<0) {
 					if(current.getLeft()!=null){
-						return searchSpectador(current.getLeft(),searching);
+						return searchSpectador(current.getLeft(),s);
 					}else {
-						return searchSpectador(current.getRigth(), searching);
+						return searchSpectador(current.getRigth(), s);
 					}
-				}else if(searching.compareTo(current)>0){
+				}else if(s.compareTo(current)>0){
 					if(current.getRigth()!=null) {
-						return searchSpectador(current.getRigth(), searching);
+						return searchSpectador(current.getRigth(), s);
 					}else {
-						return searchSpectador(current.getLeft(), searching);
+						return searchSpectador(current.getLeft(), s);
 					}
 				}else {
 					return current;
@@ -175,8 +139,47 @@ public class VoleyTournament {
 			}
 			return current;
 		}
+
+		public Participant searchParticipant(int id) throws NullPointerException{ 
+				
+				boolean found = false;
+				Participant searched = null;
+			
+			    while (first != null && found) {
+			        if(first.getId() == id) {
+			        	found = true;
+			        	searched = first;
+			        } 
+			        
+			        first = first.getNext();
+			    }
+			return searched;	
+		}
 		
+		public void choiceAleatoryParticipants(int size) {
+			
+			int m=(int)( size*0.5);
+			for(int i=0;i<m;i++) {
+				int n=(int) (Math.random() * size) + 1;
+				Participant s=searchSpectador(n);
+				addingOficialParticipants(s);
+			}
+		}
 		
-		
+		public void addingOficialParticipants(Participant p){
+			if(first == null){
+				first = p;
+			}else{
+				Participant current = first;
+				while(current.getNext() != null){
+					current = current.getNext();
+				}
+				current.setNext(p);
+				Participant temp = current;
+				current = current.getNext();
+				current.setPrev(temp);
+			}
+		}
+
 	
 }
