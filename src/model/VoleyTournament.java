@@ -69,6 +69,7 @@ public class VoleyTournament {
 		BufferedReader br = new BufferedReader(fileReader);
 		String line = br.readLine();
 		line = br.readLine();
+		int times = 0;
 		while(line != null){
 			String[] parts = line.split(",");
 			/*URL url = new URL(parts[6]);
@@ -76,11 +77,20 @@ public class VoleyTournament {
 			Participant nParticipant = new Participant(Integer.parseInt(parts[0]),parts[1],parts[2],parts[3],parts[4],parts[5]);
 			addSpectatorIntoTree(nParticipant);
 			line = br.readLine();
+			times++;
+
+			
+
 		}
 		fileReader.close();
 		br.close();
 		
-	}
+			int m=(int)(times*0.5);
+			for(int i=0;i<m;i++) {
+			addingOficialParticipants(root);
+			}
+		}
+
 
 
 
@@ -110,37 +120,6 @@ public class VoleyTournament {
 		}
 	}
 	
-	 public void convertToList(Participant root){
-		 
-		 int total = counting(root)/2;
-		 int times = 0;
-		 
-		 while(times<=total) {
-	     if(root == null) {
-	         return;
-	     }
-	   
-	     convertToList(root.getLeft());
-	     if(first == null) {
-	         first = root;
-	     }
-	     Participant prev = root.getPrev();
-	     if(first.getPrev() == null) {
-	    	 first.setPrev(root);
-	     } else {
-	         root.setLeft(first.getPrev());
-	         prev = root.getPrev();
-	         prev.setRigth(root);
-	     }
-	     prev = root;
-	     convertToList(root.getRigth());
-	     if(root.getRigth() == null) {
-	         first = root;
-	     }
-	     times++;
-		 }
-	 }
-	 
 	 public int counting(Participant current) {    
 		  if (current == null) {
 			  return 0;
@@ -149,6 +128,7 @@ public class VoleyTournament {
 		  }
 
 	}
+	 
 	 
 	 public Participant searchSpectador(int id) {
 			Participant s= new Participant(id,"","","","","");
@@ -174,6 +154,38 @@ public class VoleyTournament {
 				}
 			}
 			return current;
+		}
+		
+		public Participant searchParticipant(int id) throws NullPointerException{ 
+				
+				boolean found = false;
+				Participant searched = null;
+			
+			    while (first != null && !found) {
+			        if(first.getId() == id) {
+			        	found = true;
+			        	searched = first;
+			        } 
+			        
+			        first = first.getNext();
+			    }
+			return searched;	
+		}
+		
+	
+		public void addingOficialParticipants(Participant p){
+			if(first == null){
+				first = p;
+			}else{
+				Participant current = first;
+				while(current.getNext() != null){
+					current = current.getNext();
+				}
+				current.setNext(p);
+				Participant temp = current;
+				current = current.getNext();
+				current.setPrev(temp);
+			}
 		}
 	
 }

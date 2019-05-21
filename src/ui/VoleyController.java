@@ -73,6 +73,7 @@ public class VoleyController {
     	
     	try {
 			tournament.LoadFileAndAddToTree(directoryDataField.getText());
+			
 			loadDataLabel.setText("Potential spectators have been successfully" + "\n" + "loaded");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -83,16 +84,49 @@ public class VoleyController {
 
     @FXML
     public void searchParticipantButton(ActionEvent event) {
-
+    	try {
+    		long startTime = System.currentTimeMillis();
+    		
+    		
+    		int id = Integer.parseInt(idParticipantField.getText());
+    		Participant part;
+    		Image image; 
+    		
+    		part = tournament.searchParticipant(id);
+    		
+    		if(part.getGender().equals("Male")) {
+        		image=new Image(new File("images/avatar-man.png").toURI().toString());
+        		imageView.setImage(image);
+        	} else {
+        		image=new Image(new File("images/avatar-woman.png").toURI().toString());
+        		imageView.setImage(image);
+        	}
+        	
+        	informationFoundLabel.setText("The name is: " + part.getFirstName() + part.getLastName() + "\n" + "The email is: "
+        	+ part.getEmail() + "\n" + "The gender is: " + part.getGender() + "\n" + "The Country is: " + part.getCountry());
+        	
+        	foundSpectatorLabel.setText("The spectator was found");
+    		
+    		long endTime = System.currentTimeMillis();
+        	long duration = (endTime - startTime);
+        	timeParticipant.setText(duration+""+ " ms");
+        	
+    	} catch(NullPointerException np) {
+    		
+    		foundParticipantLabel.setText("The participant with id: "+ idParticipantField.getText() + " wasn't found.");
+    	}
     }
 
     @FXML
     public void searchSpectatorButton(ActionEvent event) {
     	try {
+    	long startTime = System.currentTimeMillis();
+ 
     	Participant found;
     	Image image;
     	
     	found = tournament.searchSpectador(Integer.parseInt(idSearchField.getText()));
+    	
     	
     	if(found.getGender().equals("Male")) {
     		image=new Image(new File("images/avatar-man.png").toURI().toString());
@@ -106,6 +140,11 @@ public class VoleyController {
     	+ found.getEmail() + "\n" + "The gender is: " + found.getGender() + "\n" + "The Country is: " + found.getCountry());
     	
     	foundSpectatorLabel.setText("The spectator was found");
+    	
+    	long endTime = System.currentTimeMillis();
+    	long duration = (endTime - startTime);
+    	timeLabel.setText(duration+""+ " ms");
+    	
     	} catch (NullPointerException e) {
     		
     		foundSpectatorLabel.setText("not know found the spectator with the id " + idSearchField.getText());
@@ -114,13 +153,18 @@ public class VoleyController {
     }
 
     @FXML
-    public void showParticipants(ActionEvent event) {
-
+    public void showParticipants(ActionEvent event) throws IOException {
+    
     }
 
     @FXML
     public void showSpectators(ActionEvent event) {
 
+    }
+    
+    @FXML
+    public void addParticipants(ActionEvent event) {
+    	
     }
 
 
