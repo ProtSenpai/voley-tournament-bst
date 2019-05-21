@@ -77,20 +77,13 @@ public class VoleyTournament {
 			Participant nParticipant = new Participant(Integer.parseInt(parts[0]),parts[1],parts[2],parts[3],parts[4],parts[5]);
 			addSpectatorIntoTree(nParticipant);
 			line = br.readLine();
-			times++;
-
-			
-
 		}
 		fileReader.close();
 		br.close();
+	//	int size = counting(root);
+    	choiceAleatoryParticipants(times);
 		
-			int m=(int)(times*0.5);
-			for(int i=0;i<m;i++) {
-			addingOficialParticipants(root);
-			}
-		}
-
+	}
 
 
 
@@ -120,34 +113,25 @@ public class VoleyTournament {
 		}
 	}
 	
-	 public int counting(Participant current) {    
-		  if (current == null) {
-			  return 0;
-		  } else {
-			  return 1 + counting(current.getLeft()) + counting(current.getRigth());
-		  }
-
-	}
-	 
 	 
 	 public Participant searchSpectador(int id) {
-			Participant searching= new Participant(id,"","","","","");
-			return searchSpectador(root,searching);
+			Participant s= new Participant(id,"","","","","");
+			return searchSpectador(root,s);
 		}
 		
-		private Participant searchSpectador(Participant current, Participant searching) {
+		private Participant searchSpectador(Participant current, Participant s) {
 			if(current!=null) {
-				if(searching.compareTo(current)<0) {
+				if(s.compareTo(current)<0) {
 					if(current.getLeft()!=null){
-						return searchSpectador(current.getLeft(),searching);
+						return searchSpectador(current.getLeft(),s);
 					}else {
-						return searchSpectador(current.getRigth(), searching);
+						return searchSpectador(current.getRigth(), s);
 					}
-				}else if(searching.compareTo(current)>0){
+				}else if(s.compareTo(current)>0){
 					if(current.getRigth()!=null) {
-						return searchSpectador(current.getRigth(), searching);
+						return searchSpectador(current.getRigth(), s);
 					}else {
-						return searchSpectador(current.getLeft(), searching);
+						return searchSpectador(current.getLeft(), s);
 					}
 				}else {
 					return current;
@@ -161,7 +145,7 @@ public class VoleyTournament {
 				boolean found = false;
 				Participant searched = null;
 			
-			    while (first != null && !found) {
+			    while (first != null && found) {
 			        if(first.getId() == id) {
 			        	found = true;
 			        	searched = first;
@@ -172,7 +156,16 @@ public class VoleyTournament {
 			return searched;	
 		}
 		
-	
+		public void choiceAleatoryParticipants(int size) {
+			
+			int m=(int)( size*0.5);
+			for(int i=0;i<m;i++) {
+				int n=(int) (Math.random() * size) + 1;
+				Participant s=searchSpectador(n);
+				addingOficialParticipants(s);
+			}
+		}
+		
 		public void addingOficialParticipants(Participant p){
 			if(first == null){
 				first = p;

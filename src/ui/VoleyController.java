@@ -2,6 +2,7 @@ package ui;
 
 
 import java.io.File;
+
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
@@ -78,7 +79,8 @@ public class VoleyController {
 		} catch (IOException e) {
 			e.printStackTrace();
 			loadDataLabel.setText("An error has occurred loading the file ");
-		}
+		} 
+    	
 
     }
 
@@ -114,6 +116,9 @@ public class VoleyController {
     	} catch(NullPointerException np) {
     		
     		foundParticipantLabel.setText("The participant with id: "+ idParticipantField.getText() + " wasn't found.");
+    	} catch(NumberFormatException nf) {
+    		
+    		foundParticipantLabel.setText("Please introduce a valid number.");
     	}
     }
 
