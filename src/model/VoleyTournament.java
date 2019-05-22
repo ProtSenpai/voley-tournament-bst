@@ -12,10 +12,6 @@ public class VoleyTournament {
 	//Relations
 	private Participant root;
 	private Participant first;
-	//Root to show the ABB
-	private Participant showRoot;
-	
-	
 
 	public static final String PATH = "data/information.csv";
 
@@ -48,20 +44,6 @@ public class VoleyTournament {
 	public void setFirst(Participant first) {
 		this.first = first;
 	}
-
-
-
-	public Participant getShowRoot() {
-		return showRoot;
-	}
-
-
-
-	public void setShowRoot(Participant showRoot) {
-		this.showRoot = showRoot;
-	}
-
-
 
 	public void LoadFileAndAddToTree(String path) throws IOException {
 		File file = new File(path);
@@ -156,11 +138,12 @@ public class VoleyTournament {
 			return searched;	
 		}
 		
-		public void choiceAleatoryParticipants(int size) {
+		public void choiceAleatoryParticipants(int tam) {
 			
-			int m=(int)(size*0.5);
-			for(int i=0;i<m;i++) {
-				int n=(int) (Math.random() * size) + 1;
+			int time = (int)(tam*0.5);
+			
+			for(int i=0;i<time;i++) {
+				int n = (int)(Math.random() *tam) + 1;
 				Participant s=searchSpectador(n);
 				addingOficialParticipants(s);
 			}

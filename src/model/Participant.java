@@ -133,20 +133,7 @@ public class Participant implements Comparable<Participant> {
 		return 0;
 	}
 	
-	/*@Override
-	public int compareTo(Participant o) {
-		
-		if(firstName.compareTo(o.firstName)<0) {
-			
-			return -1;
-		} else if (firstName.compareTo(firstName)>0) {
-			
-			return 1;
-		}
-		
-		return 0;
-	}*/
-	
+
 	public int nodosCompletos(Participant n) {
         if (n == null)
             return 0;

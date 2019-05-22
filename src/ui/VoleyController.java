@@ -315,12 +315,6 @@ public class VoleyController {
         }
     }
 
-    
-    @FXML
-    public void addParticipants(ActionEvent event) {
-    	
-    }
-
 
 
 }
