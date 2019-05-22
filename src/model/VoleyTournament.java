@@ -80,7 +80,7 @@ public class VoleyTournament {
 		}
 		fileReader.close();
 		br.close();
-	//	int size = counting(root);
+
     	choiceAleatoryParticipants(times);
 		
 	}
@@ -158,7 +158,7 @@ public class VoleyTournament {
 		
 		public void choiceAleatoryParticipants(int size) {
 			
-			int m=(int)( size*0.5);
+			int m=(int)(size*0.5);
 			for(int i=0;i<m;i++) {
 				int n=(int) (Math.random() * size) + 1;
 				Participant s=searchSpectador(n);
@@ -179,6 +179,28 @@ public class VoleyTournament {
 				current = current.getNext();
 				current.setPrev(temp);
 			}
+		}
+		
+		public String showParticipantbyCountry(String country) {
+			Participant p = first;
+			String msg = "";
+			
+			if(p == null) {
+				msg = "The participant wasn't found";
+			} else {
+				Participant current = p;
+				while(current != null ) {
+					if(current.getCountry() == country) {
+					msg = current.getFirstName() + "\n" + current.getCountry() + "\n" + current.getId();
+					
+					} else {
+						current = current.getNext();
+					}
+				}
+			}
+			
+			return msg;
+			
 		}
 
 	

@@ -5,6 +5,8 @@ import java.io.File;
 
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,8 +20,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -73,6 +77,9 @@ public class VoleyController {
     public static final int DIAMETRO = 10;
     public static final int RADIO = DIAMETRO / 2;
     public static final int ANCHO = 30;
+
+	private Rectangle rectangle = new Rectangle();
+	private Label label = new Label();
 
     @FXML
     public void exploreDataButton(ActionEvent event) {
@@ -181,9 +188,53 @@ public class VoleyController {
     @FXML
 
     public void showParticipants(ActionEvent event) {
-    	
     	paneShow.getChildren().clear();
-
+    	try {
+    	Participant p = tournament.getFirst();
+		Image image;
+		int posX = 0;
+		int posY = (int) (paneShow.getHeight()/2);
+		String country = JOptionPane.showInputDialog("Please enter the country : ");
+		
+		if(p == null) {
+			label.setLayoutX(posX);
+			label.setLayoutY(posY);
+			label.setText("The participant wasn't found");
+		} else {
+			Participant current = p;
+			while(current != null ) {
+				if(current.getCountry() == country) {
+				label.setLayoutX(posX);
+				label.setLayoutY(posY+50);
+				label.setText(current.getFirstName() + "\n" + current.getCountry() + "\n" + current.getId());
+					if(current.getGender().equals("Male")) {
+			    		image=new Image(new File("images/avatar-man.png").toURI().toString());
+			    		rectangle.setLayoutX(posX);
+			    		rectangle.setLayoutY(posY);
+			    		rectangle.setFill(new ImagePattern(image));
+			    		
+			    	} else {
+			    		image=new Image(new File("images/avatar-woman.png").toURI().toString());
+			    		rectangle.setLayoutX(posX);
+			    		rectangle.setLayoutY(posY);
+			    		rectangle.setFill(new ImagePattern(image));
+			    	}
+				} else {
+					current = current.getNext();
+				}
+				
+				paneShow.getChildren().add(rectangle);
+				paneShow.getChildren().add(label);
+				posX = posX + 50;
+				
+			}
+		}
+    	} catch (NullPointerException np) {
+    		label.setLayoutX(0);
+			label.setLayoutY((int) (paneShow.getHeight()/2));
+    		label.setText("Wrong option");
+    		paneShow.getChildren().add(label);
+    	} 
 
     }
 
@@ -218,8 +269,6 @@ public class VoleyController {
         	
         }
         else {
-        	
-    
         	
             int EXTRA = 1 * (ANCHO / 2);
             Circle c= new Circle(x, y, RADIO);
